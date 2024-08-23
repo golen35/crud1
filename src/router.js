@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 // Require controller modules.
-import { signugControllers } from "./controller/authControllers";
+import { SignugControllers } from "./controller/AuthControllers";
 
-router.get("/s", signugControllers);
+router.get("/signug", SignugControllers);
 
 
 module.exports = router;

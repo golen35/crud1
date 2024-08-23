@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "build": "sucrase ./src/ -d ./dist --transforms imports",
+    "start": "node dist/server",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
