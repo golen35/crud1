@@ -11,16 +11,11 @@ const app = express();
 
 app.use(express.json());
 
-app.use(
-    cors({
-      origin: ["http://localhost:3000"],
-    })
-  );
+if(process.env.NODE_ENV = 'development') {
+  app.use(cors({origin: `${process.env.CLIENT_URL}`}));
+}
 
-  dotenv.config({ path: ".env" });
-
-//Conection MongoDB
-
+dotenv.config({ path: ".env" });
 
 
 // Middlewares
@@ -31,9 +26,15 @@ app.use(cookieParser());
 
 app.use("/v1", router);
 
-export const port = process.env.PORT || 8000;
+export const PORT = process.env.PORT || 8000;
 // export const JWT_SECRET = process.env.JWT_SECRET!
 
-app.listen(port, () => {
-  console.log(`Server is ruuning on port ${port}`);
-});
+// Conection MongoDB
+const MONGOURL = process.env.MONGO_URL;
+// Mongose
+mongoose.connect(MONGOURL).then(()=>{
+    console.log("Database conected successful.")
+    app.listen(PORT, ()=>{
+        console.log(`Server is ruuning on port ${PORT}`)
+    })
+}).catch((error) =>console.log(error))
