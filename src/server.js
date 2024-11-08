@@ -1,10 +1,11 @@
 import express from 'express';
 import dotenv from "dotenv";
 import cors from "cors";
+import mongoose from 'mongoose';
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-import router  from './router';
+import router  from './routes';
 
 
 const app = express();
